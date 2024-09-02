@@ -1,25 +1,26 @@
 
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchContacts } from './redux/contactsOps'; // Add this line
-import { selectContacts, selectIsError, selectIsLoading } from './redux/contactsSlice';
+import { fetchContacts } from './redux/contactsOps'; 
+import { selectError, selectLoading } from "./redux/contactsSlice";
 import ContactForm from './components/ContactForm/ContactForm';
 import ContactList from './components/ContactList/ContactList';
 import SearchBox from './components/SearchBox/SearchBox';
 import './App.css';
+import Loader from './components/Loader/Loader';
 
 const App = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectIsLoading);
-  const isError = useSelector(selectIsError);
+  const isLoading = useSelector(selectLoading);
+  const isError = useSelector(selectError);
 
   useEffect(() => {
-    dispatch(fetchContacts()); // Now this should work
+    dispatch(fetchContacts()); 
   }, [dispatch]);
 
   return (
     <div>
-      {isLoading && <span className="css.loading"></span>}
+      {isLoading && <Loader/>}
       <h1>Phonebook</h1>
       <ContactForm />
       <SearchBox />
