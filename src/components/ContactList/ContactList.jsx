@@ -15,7 +15,7 @@ const ContactList = () => {
         <Contact
           item={contact}
           key={contact.id}
-          onDelete={() => dispatch(deleteContact(contact.id))}
+          // onDelete={() => dispatch(deleteContact(contact.id))}
         />
       ))}
     </ul>

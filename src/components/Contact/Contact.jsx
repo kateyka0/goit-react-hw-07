@@ -1,7 +1,10 @@
 import css from './Contact.module.css'
 import { HiUser, HiPhone } from "react-icons/hi2";
-
-const Contact = ({ item, onDelete }) => {
+import { deleteContact } from '../../redux/contactsOps';
+import { useDispatch } from 'react-redux';
+const Contact = ({ item }) => {
+  const dispatch = useDispatch();
+  const onDaleteContact = (id) => dispatch(deleteContact(id));
   return (
     <div className={css.card}>
       <div className={css.contacts}>
@@ -15,7 +18,9 @@ const Contact = ({ item, onDelete }) => {
         </div>
           </div>
           
-      <button className={css.deleteButton} onClick={onDelete}>
+      <button className={css.deleteButton}
+        type='button'
+        onClick={() => onDaleteContact(item.id)}>
         Delete
       </button>
     </div>
